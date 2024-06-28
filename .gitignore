@@ -11,6 +11,7 @@
 # production
 /build
 
+
 # misc
 .DS_Store
 .env.local
@@ -32,6 +33,7 @@ typechain
 cache
 artifacts
 
+src/package-lock.json
 src/frontend/contractsData
 node_modules
 .env
