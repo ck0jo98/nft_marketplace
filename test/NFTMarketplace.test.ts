@@ -8,7 +8,7 @@ const fromWei = (num: number | string) =>
   hre.ethers.formatEther(num.toString());
 
 describe("NFTMarketplace", function () {
-  const FEE_PERCENT = 1_000_000_000_000;
+  const FEE_PERCENT = 100;
   const URI = "Sample URI";
   let nft: NFT;
   let marketplace: Marketplace;
@@ -93,7 +93,7 @@ describe("NFTMarketplace", function () {
   });
 
   describe("Purchasing item", function () {
-    const price = hre.ethers.parseEther("0.1");
+    const price = toWei(1);
     const tokenId = 1;
     const idx = 1;
     let totalPriceInWei: bigint;
@@ -125,12 +125,6 @@ describe("NFTMarketplace", function () {
         addr1.getAddress()
       );
 
-      console.log(`Total price in ETH: ${fromWei(totalPriceInWei.toString())}`);
-
-      console.log(
-        `Seller's initial balance: ${fromWei(sellerInitialBalance.toString())}`
-      );
-
       const ownerInitialBalance = await hre.ethers.provider.getBalance(
         deployer.getAddress()
       );
@@ -156,15 +150,15 @@ describe("NFTMarketplace", function () {
       );
 
       const balanceDifference = sellerFinalBalance - sellerInitialBalance;
-      const balanceDifferenceInEth = fromWei(balanceDifference.toString());
 
-      expect(parseFloat(balanceDifferenceInEth)).to.equal(price);
+      expect(balanceDifference).to.equal(price.toString());
 
       // Checking if the contract owner received the fee of the transaction
       const ownerFinalBalance = await hre.ethers.provider.getBalance(
         deployer.getAddress()
       );
-      const feeAmount = totalPriceInWei - toWei(price.toString());
+
+      const feeAmount = totalPriceInWei - price;
       const ownerBalanceDifference = ownerFinalBalance - ownerInitialBalance;
 
       expect(fromWei(ownerBalanceDifference.toString())).to.equal(
