@@ -29,6 +29,7 @@ coverage
 coverage.json
 typechain
 
+client/contractsData
 #Hardhat files
 cache
 artifacts

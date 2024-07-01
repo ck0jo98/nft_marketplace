@@ -8,6 +8,8 @@ import { Spinner } from 'react-bootstrap';
 import Home from './components/Home';
 
 import './App.css';
+import Create from './components/Create';
+import MyListedItems from './components/MyListedItems';
 
 const App: React.FC = () => {
   const [nft, setNft] = useState<ethers.Contract | null>(null);
@@ -57,13 +59,12 @@ const App: React.FC = () => {
               <Route path="/" element={
                 <Home marketplace={marketplace} nft={nft} />
               } />
-              {/* <Route path="/create" element={
-                <Create marketplace={marketplace} nft={nft} />
-              } />
-              <Route path="/my-listed-items" element={
-                <MyListedItems marketplace={marketplace} nft={nft} account={account} />
-              } />
-              <Route path="/my-purchases" element={
+              {
+                <>
+                  <Route path="/create" element={<Create marketplace={marketplace} nft={nft} />} />
+                  <Route path="/my-listed-items" element={<MyListedItems marketplace={marketplace} nft={nft} account={account} />} />
+                </>
+              /* <Route path="/my-purchases" element={
                 <MyPurchases marketplace={marketplace} nft={nft} account={account} />
               } /> */}
             </Routes>

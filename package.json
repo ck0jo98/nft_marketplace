@@ -157,6 +157,7 @@
     "invert-kv": "^1.0.0",
     "ip": "^1.1.5",
     "ipfs-core-types": "^0.10.1",
+    "ipfs-http-client": "^60.0.1",
     "ipfs-unixfs": "^6.0.6",
     "ipfs-utils": "^9.0.4",
     "is-accessor-descriptor": "^1.0.0",
